@@ -29,6 +29,7 @@ export default () => {
           className="mt-4 overflow-hidden bg-white rounded-lg shadow-xl"
         >
           <Logo
+            src="/logo.jpg"
             className="block w-full max-w-xs mx-auto text-white fill-current"
           />
 

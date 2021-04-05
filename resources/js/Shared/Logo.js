@@ -21,5 +21,5 @@ import React from 'react';
 // );
 
 export default props => (
-  <img src="/logo.jpg" {...props} />
+  <img {...props} />
 )
