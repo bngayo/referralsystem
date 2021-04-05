@@ -21,6 +21,8 @@ class CreatePatientsTable extends Migration
             $table->string('email', 50)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('nhif_number', 25)->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

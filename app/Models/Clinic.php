@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Clinic extends Model
 {
-    use HasFactory;
+    use SoftDeletes, HasFactory;
 
     public function scopeFilter($query, array $filters)
     {
