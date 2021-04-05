@@ -49,6 +49,16 @@ Route::put('contacts/{contact}')->name('contacts.update')->uses('ContactsControl
 Route::delete('contacts/{contact}')->name('contacts.destroy')->uses('ContactsController@destroy')->middleware('auth');
 Route::put('contacts/{contact}/restore')->name('contacts.restore')->uses('ContactsController@restore')->middleware('auth');
 
+
+// Clinics
+Route::get('clinics')->name('clinics')->uses('ClinicsController@index')->middleware('remember', 'auth');
+Route::get('clinics/create')->name('clinics.create')->uses('ClinicsController@create')->middleware('auth');
+Route::post('clinics')->name('clinics.store')->uses('ClinicsController@store')->middleware('auth');
+Route::get('clinics/{organization}/edit')->name('clinics.edit')->uses('ClinicsController@edit')->middleware('auth');
+Route::put('clinics/{organization}')->name('clinics.update')->uses('ClinicsController@update')->middleware('auth');
+Route::delete('clinics/{organization}')->name('clinics.destroy')->uses('ClinicsController@destroy')->middleware('auth');
+Route::put('clinics/{organization}/restore')->name('clinics.restore')->uses('ClinicsController@restore')->middleware('auth');
+
 // Reports
 Route::get('reports')->name('reports')->uses('ReportsController')->middleware('auth');
 

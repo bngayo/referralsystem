@@ -29,14 +29,14 @@ const Index = () => {
           <thead>
             <tr className="font-bold text-left">
               <th className="px-6 pt-5 pb-4">Name</th>
-              <th className="px-6 pt-5 pb-4">City</th>
+              <th className="px-6 pt-5 pb-4">Location</th>
               <th className="px-6 pt-5 pb-4" colSpan="2">
                 Phone
               </th>
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, name, city, phone, deleted_at }) => {
+            {data.map(({ id, name, location, phone, deleted_at }) => {
               return (
                 <tr
                   key={id}
@@ -62,7 +62,7 @@ const Index = () => {
                       href={route('clinics.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
-                      {city}
+                      {location}
                     </InertiaLink>
                   </td>
                   <td className="border-t">
@@ -104,6 +104,6 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="clinics" children={page} />;
+Index.layout = page => <Layout title="Clinics" children={page} />;
 
 export default Index;
