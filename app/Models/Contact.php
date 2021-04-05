@@ -9,9 +9,9 @@ class Contact extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public function organization()
+    public function clinic()
     {
-        return $this->belongsTo(Organization::class);
+        return $this->belongsTo(Clinic::class);
     }
 
     public function getNameAttribute()

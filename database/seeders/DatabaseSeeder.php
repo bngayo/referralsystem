@@ -3,38 +3,32 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Account;
+use App\Models\Clinic;
 use App\Models\Contact;
-use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $account = Account::create(['name' => 'Acme Corporation']);
+        $clinic = Clinic::create([
+            'name' => 'St Judes Medical Center',
+            'phone' => '0706298700',
+            'email' => 'stjudesmedicalcentre@gmail.com',
+            'address' => 'Mwangaza street, Komarock Estate Sector 3A Nairobi',
+            'location' => 'Nairobi'
+        ]);
 
         User::factory()->create([
-            'account_id' => $account->id,
+            'clinic_id' => $clinic->id,
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'johndoe@example.com',
             'owner' => true,
         ]);
 
-        User::factory()->count(5)->create([
-            'account_id' => $account->id
+        User::factory()->count(2)->create([
+            'clinic_id' => $clinic->id
         ]);
-
-        $organizations = Organization::factory()->count(100)->create([
-            'account_id' => $account->id
-        ]);
-
-        Contact::factory()->count(100)->create([
-            'account_id' => $account->id
-        ])
-            ->each(function (Contact  $contact) use ($organizations) {
-                $contact->update(['organization_id' => $organizations->random()->id]);
-            });
     }
 }
