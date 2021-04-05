@@ -42,20 +42,20 @@ const Edit = () => {
       <Helmet title={data.name} />
       <h1 className="mb-8 text-3xl font-bold">
         <InertiaLink
-          href={route('organizations')}
+          href={route('clinics')}
           className="text-indigo-600 hover:text-indigo-700"
         >
-          Organizations
+          Clinics
         </InertiaLink>
         <span className="mx-2 font-medium text-indigo-600">/</span>
         {data.name}
       </h1>
-      {organization.deleted_at && (
+      {clinic.deleted_at && (
         <TrashedMessage onRestore={restore}>
-          This organization has been deleted.
+          This clinic has been deleted.
         </TrashedMessage>
       )}
-      <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
+      <div className="w-full overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <TextInput
@@ -132,8 +132,8 @@ const Edit = () => {
             </tr>
           </thead>
           <tbody>
-            {organization.contacts.map(
-              ({ id, name, phone, city, deleted_at }) => {
+            {clinic.contacts.map(
+              ({ id, name, phone, email, deleted_at }) => {
                 return (
                   <tr
                     key={id}
@@ -159,7 +159,7 @@ const Edit = () => {
                         href={route('contacts.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
-                        {city}
+                        {email}
                       </InertiaLink>
                     </td>
                     <td className="border-t">
@@ -187,7 +187,7 @@ const Edit = () => {
                 );
               }
             )}
-            {organization.contacts.length === 0 && (
+            {clinic.contacts.length === 0 && (
               <tr>
                 <td className="px-6 py-4 border-t" colSpan="4">
                   No contacts found.

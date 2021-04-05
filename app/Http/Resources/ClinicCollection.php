@@ -18,6 +18,7 @@ class ClinicCollection extends ResourceCollection
             'id',
             'name',
             'phone',
+            'address',
             'location',
             'deleted_at'
         );

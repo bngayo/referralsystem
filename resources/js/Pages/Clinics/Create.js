@@ -31,7 +31,7 @@ const Create = () => {
         </InertiaLink>
         <span className="font-medium text-indigo-600"> /</span> Add Clinic
       </h1>
-      <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
+      <div className="w-full overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <TextInput
