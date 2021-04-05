@@ -34,17 +34,17 @@ class ClinicsController extends Controller
 
     public function store(ClinicstoreRequest $request)
     {
-        Auth::user()->account->clinics()->create(
+        Clinic::create(
             $request->validated()
         );
 
-        return Redirect::route('clinics')->with('success', 'Clinic created.');
+        return Redirect::route('clinics')->with('success', ucfirst($request->name).' successfully created.');
     }
 
     public function edit(Clinic $clinic)
     {
         return Inertia::render('Clinics/Edit', [
-            'Clinic' => new ClinicResource($clinic),
+            'clinic' => new ClinicResource($clinic),
         ]);
     }
 
