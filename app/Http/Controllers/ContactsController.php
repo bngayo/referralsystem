@@ -21,7 +21,7 @@ class ContactsController extends Controller
         return Inertia::render('Contacts/Index', [
             'filters' => Request::all('search', 'trashed'),
             'contacts' => new ContactCollection(
-                Auth::user()->account->contacts()
+                Auth::user()->clinic->contacts()
                     ->with('organization')
                     ->orderByName()
                     ->filter(Request::only('search', 'trashed'))
@@ -35,7 +35,7 @@ class ContactsController extends Controller
     {
         return Inertia::render('Contacts/Create', [
             'organizations' => new UserOrganizationCollection(
-                Auth::user()->account->organizations()
+                Auth::user()->clinic->organizations()
                     ->orderBy('name')
                     ->get()
             ),
@@ -44,7 +44,7 @@ class ContactsController extends Controller
 
     public function store(ContactStoreRequest $request)
     {
-        Auth::user()->account->contacts()->create(
+        Auth::user()->clinic->contacts()->create(
             $request->validated()
         );
 
@@ -56,7 +56,7 @@ class ContactsController extends Controller
         return Inertia::render('Contacts/Edit', [
             'contact' => new ContactResource($contact),
             'organizations' => new UserOrganizationCollection(
-                Auth::user()->account->organizations()
+                Auth::user()->clinic->organizations()
                     ->orderBy('name')
                     ->get()
             ),

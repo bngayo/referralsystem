@@ -30,18 +30,12 @@ class PatientsController extends Controller
 
     public function create()
     {
-        return Inertia::render('Patients/Create', [
-            'organizations' => new UserOrganizationCollection(
-                Auth::user()->account->organizations()
-                    ->orderBy('name')
-                    ->get()
-            ),
-        ]);
+        return Inertia::render('Patients/Create');
     }
 
     public function store(PatientStoreRequest $request)
     {
-        Auth::user()->account->Patients()->create(
+        Auth::user()->clinic->patients()->create(
             $request->validated()
         );
 
@@ -51,12 +45,7 @@ class PatientsController extends Controller
     public function edit(Patient $patient)
     {
         return Inertia::render('Patients/Edit', [
-            'patient' => new PatientResource($patient),
-            'organizations' => new UserOrganizationCollection(
-                Auth::user()->account->organizations()
-                    ->orderBy('name')
-                    ->get()
-            ),
+            'patient' => new PatientResource($patient)
         ]);
     }
 

@@ -16,11 +16,12 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('clinic_id')->index();
+            $table->string('nhif_number', 25);
             $table->string('first_name', 25);
             $table->string('last_name', 25);
+            $table->string('phone', 50);
             $table->string('email', 50)->nullable();
-            $table->string('phone', 50)->nullable();
-            $table->string('nhif_number', 25)->nullable();
+            $table->date('expected_delivery')->now();
             $table->integer('created_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->timestamps();

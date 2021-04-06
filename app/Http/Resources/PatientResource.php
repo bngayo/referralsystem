@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ContactResource extends JsonResource
+class PatientResource extends JsonResource
 {
 
     /**
@@ -22,8 +22,9 @@ class ContactResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'nhif_number' => $this->nhif_number,
+            'expected_delivery' => $this->expected_delivery,
             'deleted_at' => $this->deleted_at,
-            'clinic_id' => $this->clinic_id,
+            'clinic' => $this->whenLoaded('clinic')
         ];
     }
 }

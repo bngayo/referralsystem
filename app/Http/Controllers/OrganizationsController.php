@@ -19,7 +19,7 @@ class OrganizationsController extends Controller
         return Inertia::render('Organizations/Index', [
             'filters' => Request::all('search', 'trashed'),
             'organizations' => new OrganizationCollection(
-                Auth::user()->account->organizations()
+                Auth::user()->clinic->organizations()
                     ->orderBy('name')
                     ->filter(Request::only('search', 'trashed'))
                     ->paginate()
@@ -35,7 +35,7 @@ class OrganizationsController extends Controller
 
     public function store(OrganizationStoreRequest $request)
     {
-        Auth::user()->account->organizations()->create(
+        Auth::user()->clinic->organizations()->create(
             $request->validated()
         );
 

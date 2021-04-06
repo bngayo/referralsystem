@@ -22,9 +22,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'owner' => 'boolean',
     ];
 
-    public function account()
+    public function clinic()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Clinic::class);
     }
 
     public function getNameAttribute()
@@ -34,19 +34,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function setPasswordAttribute($password)
     {
-        if(!$password) return;
+        if (!$password) {
+            return;
+        }
 
         $this->attributes['password'] = Hash::make($password);
     }
 
     public function setPhotoAttribute($photo)
     {
-        if(!$photo) return;
+        if (!$photo) {
+            return;
+        }
 
         $this->attributes['photo_path'] = $photo instanceof UploadedFile ? $photo->store('users') : $photo;
     }
 
-    public function getPhotoAttribute() {
+    public function getPhotoAttribute()
+    {
         return $this->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']);
     }
 
