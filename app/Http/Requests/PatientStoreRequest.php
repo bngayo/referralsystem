@@ -26,7 +26,8 @@ class PatientStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nhif_number' => ['required', 'max:50', Rule::unique('patients')],
+            'id_number' => ['required', 'max:50', Rule::unique('patients')],
+            'nhif_number' => ['nullable', 'max:50', Rule::unique('patients')],
             'first_name' => ['required', 'max:50'],
             'last_name' => ['required', 'max:50'],
             'clinic_id' => ['nullable', Rule::exists('clinics', 'id')->where(function ($query) {

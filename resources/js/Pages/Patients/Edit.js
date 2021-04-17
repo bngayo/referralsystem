@@ -17,6 +17,7 @@ const Edit = () => {
     email: patient.email || '',
     phone: patient.phone || '',
     nhif_number: patient.nhif_number || '',
+    id_number: patient.id_number || '',
     expected_delivery: patient.expected_delivery || '',
   });
 
@@ -120,6 +121,15 @@ const Edit = () => {
               errors={errors.nhif_number}
               value={data.nhif_number}
               onChange={e => setData('nhif_number', e.target.value)}
+            />
+             <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="ID No"
+              name="id_number"
+              type="text"
+              errors={errors.id_number}
+              value={data.id_number}
+              onChange={e => setData('id_number', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"

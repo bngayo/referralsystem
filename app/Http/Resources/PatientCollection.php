@@ -19,6 +19,7 @@ class PatientCollection extends ResourceCollection
             'name',
             'phone',
             'nhif_number',
+            'id_number',
             'expected_delivery',
             'deleted_at',
             'clinic'

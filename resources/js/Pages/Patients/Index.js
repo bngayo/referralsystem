@@ -28,7 +28,8 @@ const Index = () => {
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="font-bold text-left">
-            <th className="px-6 pt-5 pb-4">NHIF No</th>
+            <th className="px-6 pt-5 pb-4">ID No</th>
+              <th className="px-6 pt-5 pb-4">NHIF No</th>
               <th className="px-6 pt-5 pb-4">Name</th>
               <th className="px-6 pt-5 pb-4">Phone</th>
               <th className="px-6 pt-5 pb-4" colSpan="2">
@@ -37,7 +38,7 @@ const Index = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, nhif_number, name, phone, expected_delivery, deleted_at }) => (
+            {data.map(({ id, id_number, nhif_number, name, phone, expected_delivery, deleted_at }) => (
               <tr
                 key={id}
                 className="hover:bg-gray-100 focus-within:bg-gray-100"
@@ -47,13 +48,21 @@ const Index = () => {
                     href={route('patients.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                   >
-                    {nhif_number}
+                    {id_number}
                     {deleted_at && (
                       <Icon
                         name="trash"
                         className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
                       />
                     )}
+                  </InertiaLink>
+                </td>
+                <td className="border-t">
+                  <InertiaLink
+                    href={route('patients.edit', id)}
+                    className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
+                  >
+                    {nhif_number}
                   </InertiaLink>
                 </td>
                 <td className="border-t">

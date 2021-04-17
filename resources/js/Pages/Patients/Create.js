@@ -9,6 +9,7 @@ import 'react-day-picker/lib/style.css';
 const Create = () => {
   const { data, setData, errors, post, processing } = useForm({
     nhif_number: '',
+    id_number: '',
     first_name: '',
     last_name: '',
     email: '',
@@ -77,6 +78,15 @@ const Create = () => {
               errors={errors.nhif_number}
               value={data.nhif_number}
               onChange={e => setData('nhif_number', e.target.value)}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="ID No"
+              name="id_number"
+              type="text"
+              errors={errors.id_number}
+              value={data.id_number}
+              onChange={e => setData('id_number', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
