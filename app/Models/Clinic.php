@@ -19,6 +19,11 @@ class Clinic extends Model
         return $this->hasMany(Patient::class);
     }
 
+    public function referrals()
+    {
+        return $this->hasMany(Referral::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
