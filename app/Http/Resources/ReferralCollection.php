@@ -22,7 +22,9 @@ class ReferralCollection extends ResourceCollection
             'id_number',
             'expected_delivery',
             'deleted_at',
-            'clinic'
+            'clinic',
+            'user',
+            'patient'
         );
     }
 }

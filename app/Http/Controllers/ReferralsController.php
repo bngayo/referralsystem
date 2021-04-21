@@ -20,9 +20,8 @@ class ReferralsController extends Controller
     {
         return Inertia::render('Referrals/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'referrals' => new ReferralCollection(
-                Referral::with('clinic')
-                    ->orderByDateCreated()
+            'referrals' => ReferralResource::collection(
+                Referral::orderByDateCreated()
                     ->filter(Request::only('search', 'trashed'))
                     ->paginate()
                     ->appends(Request::all())

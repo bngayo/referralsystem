@@ -17,15 +17,15 @@ class ReferralResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'nhif_number' => $this->nhif_number,
-            'id_number' => $this->id_number,
-            'expected_delivery' => $this->expected_delivery,
+            'name' => $this->whenLoaded('patient')->name,
+            'email' => $this->whenLoaded('patient')->email,
+            'phone' => $this->whenLoaded('patient')->phone,
+            'nhif_number' => $this->whenLoaded('patient')->nhif_number,
+            'id_number' => $this->whenLoaded('patient')->id_number,
+            'expected_delivery' => $this->whenLoaded('patient')->expected_delivery,
             'deleted_at' => $this->deleted_at,
-            'clinic' => $this->whenLoaded('clinic')
+            'clinic' => $this->whenLoaded('clinic')->name,
+            'user' => $this->whenLoaded('user')->name
         ];
     }
 }

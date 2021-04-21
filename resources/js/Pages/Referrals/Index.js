@@ -6,49 +6,54 @@ import Pagination from '@/Shared/Pagination';
 import SearchFilter from '@/Shared/SearchFilter';
 
 const Index = () => {
-  const { patients } = usePage().props;
+  const { referrals } = usePage().props;
   const {
     data,
     meta: { links }
-  } = patients;
+  } = referrals;
   return (
     <div>
-      <h1 className="mb-8 text-3xl font-bold">Patients</h1>
+      <h1 className="mb-8 text-3xl font-bold">Referrals</h1>
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
         <InertiaLink
           className="btn-indigo focus:outline-none"
-          href={route('patients.create')}
+          href={route('patients')}
         >
           <span>Create</span>
-          <span className="hidden md:inline"> Patient</span>
+          <span className="hidden md:inline"> Referral</span>
         </InertiaLink>
       </div>
       <div className="overflow-x-auto bg-white rounded shadow">
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="font-bold text-left">
-            <th className="px-6 pt-5 pb-4">ID No</th>
-              <th className="px-6 pt-5 pb-4">NHIF No</th>
+              <th className="px-6 pt-5 pb-4">ID/NHIF No</th>
               <th className="px-6 pt-5 pb-4">Name</th>
               <th className="px-6 pt-5 pb-4">Phone</th>
-              <th className="px-6 pt-5 pb-4" colSpan="2">
+              <th className="px-6 pt-5 pb-4">
                 Expected Delivery
+              </th>
+              <th className="px-6 pt-5 pb-4">
+                Referred From
+              </th>
+              <th className="px-6 pt-5 pb-4" colSpan="2">
+                Referred By
               </th>
             </tr>
           </thead>
           <tbody>
-            {data.map(({ id, id_number, nhif_number, name, phone, expected_delivery, deleted_at }) => (
+            {data.map(({ id, id_number, nhif_number, name, phone, expected_delivery, clinic, user, deleted_at }) => (
               <tr
                 key={id}
                 className="hover:bg-gray-100 focus-within:bg-gray-100"
               >
                 <td className="border-t">
                   <InertiaLink
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                   >
-                    {id_number}
+                    {nhif_number ? nhif_number : id_number}
                     {deleted_at && (
                       <Icon
                         name="trash"
@@ -61,15 +66,6 @@ const Index = () => {
                   <InertiaLink
                     href={route('patients.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
-                  >
-                    {nhif_number}
-                  </InertiaLink>
-                </td>
-                <td className="border-t">
-                  <InertiaLink
-                    tabIndex="1"
-                    className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-                    href={route('patients.edit', id)}
                   >
                     {name}
                   </InertiaLink>
@@ -90,6 +86,24 @@ const Index = () => {
                     className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                   >
                     {expected_delivery}
+                  </InertiaLink>
+                </td>
+                <td className="border-t">
+                  <InertiaLink
+                    tabIndex="-1"
+                    href={route('patients.edit', id)}
+                    className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
+                  >
+                    {clinic}
+                  </InertiaLink>
+                </td>
+                <td className="border-t">
+                  <InertiaLink
+                    tabIndex="-1"
+                    href={route('patients.edit', id)}
+                    className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
+                  >
+                    {user}
                   </InertiaLink>
                 </td>
                 <td className="w-px border-t">
@@ -121,6 +135,6 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Patients" children={page} />;
+Index.layout = page => <Layout title="Referrals" children={page} />;
 
 export default Index;

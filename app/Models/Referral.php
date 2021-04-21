@@ -8,9 +8,21 @@ class Referral extends Model
 {
     use HasFactory;
 
+    protected $with = ['patient', 'clinic', 'user'];
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function scopeOrderByDateCreated($query)
