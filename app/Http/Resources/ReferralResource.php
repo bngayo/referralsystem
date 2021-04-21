@@ -25,7 +25,8 @@ class ReferralResource extends JsonResource
             'expected_delivery' => $this->whenLoaded('patient')->expected_delivery,
             'deleted_at' => $this->deleted_at,
             'clinic' => $this->whenLoaded('clinic')->name,
-            'user' => $this->whenLoaded('user')->name
+            'user' => $this->whenLoaded('user')->name,
+            'notes' => $this->notes,
         ];
     }
 }

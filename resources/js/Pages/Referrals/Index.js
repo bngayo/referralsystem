@@ -64,7 +64,7 @@ const Index = () => {
                 </td>
                 <td className="border-t">
                   <InertiaLink
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                   >
                     {name}
@@ -73,7 +73,7 @@ const Index = () => {
                 <td className="border-t">
                   <InertiaLink
                     tabIndex="-1"
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                   >
                     {phone}
@@ -82,7 +82,7 @@ const Index = () => {
                 <td className="border-t">
                   <InertiaLink
                     tabIndex="-1"
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                   >
                     {expected_delivery}
@@ -91,7 +91,7 @@ const Index = () => {
                 <td className="border-t">
                   <InertiaLink
                     tabIndex="-1"
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                   >
                     {clinic}
@@ -100,7 +100,7 @@ const Index = () => {
                 <td className="border-t">
                   <InertiaLink
                     tabIndex="-1"
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                   >
                     {user}
@@ -109,7 +109,7 @@ const Index = () => {
                 <td className="w-px border-t">
                   <InertiaLink
                     tabIndex="-1"
-                    href={route('patients.edit', id)}
+                    href={route('referrals.edit', id)}
                     className="flex items-center px-4 focus:outline-none"
                   >
                     <Icon

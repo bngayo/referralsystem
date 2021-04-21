@@ -6,73 +6,61 @@ import Layout from '@/Shared/Layout';
 import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
+import TextArea from '@/Shared/TextArea';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 const Edit = () => {
-  const { patient } = usePage().props;
+  const { referral } = usePage().props;
   const { data, setData, errors, put, processing } = useForm({
-    first_name: patient.first_name || '',
-    last_name: patient.last_name || '',
-    email: patient.email || '',
-    phone: patient.phone || '',
-    nhif_number: patient.nhif_number || '',
-    id_number: patient.id_number || '',
-    expected_delivery: patient.expected_delivery || '',
+    name: referral.name || '',
+    email: referral.email || '',
+    phone: referral.phone || '',
+    nhif_number: referral.nhif_number || '',
+    id_number: referral.id_number || '',
+    expected_delivery: referral.expected_delivery || '',
+    notes: referral.notes || '',
+    clinic: referral.clinic || '',
   });
 
   function handleSubmit(e) {
     e.preventDefault();
-    put(route('patients.update', patient.id));
-  }
-
-  function onRefer() {
-    if (confirm('Are you sure you want to refer this patient?')) {
-      Inertia.get(route('referrals.create', patient.id));
-    }
+    put(route('referrals.update', referral.id));
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this patient?')) {
-      Inertia.delete(route('patients.destroy', patient.id));
+    if (confirm('Are you sure you want to delete this referral?')) {
+      Inertia.delete(route('referrals.destroy', referral.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this patient?')) {
-      Inertia.put(route('patients.restore', patient.id));
+    if (confirm('Are you sure you want to restore this referral?')) {
+      Inertia.put(route('referrals.restore', referral.id));
     }
   }
 
   return (
     <div>
-      <Helmet title={`${data.first_name} ${data.last_name}`} />
+      <Helmet title={`${data.name}`} />
 
       <div className="flex items-center justify-between mb-6">
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
-            href={route('patients')}
+            href={route('referrals')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Patients
+            Referrals
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
-          {data.first_name} {data.last_name}
+          {data.clinic}
+          <span className="mx-2 font-medium text-indigo-600">/</span>
+          {data.name}
         </h1>
-        {!patient.deleted_at && (
-            <button
-                className="btn-indigo"
-                tabIndex="-1"
-                type="button"
-                onClick={onRefer}
-              >
-                Refer Patient to St Jude
-          </button>
-        )}
       </div>
 
-      {patient.deleted_at && (
+      {referral.deleted_at && (
         <TrashedMessage onRestore={restore}>
-          This patient has been deleted.
+          This referral has been deleted.
         </TrashedMessage>
       )}
       <div className="w-full overflow-hidden bg-white rounded shadow">
@@ -80,19 +68,12 @@ const Edit = () => {
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="First Name"
-              name="first_name"
-              errors={errors.first_name}
-              value={data.first_name}
-              onChange={e => setData('first_name', e.target.value)}
-            />
-            <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Last Name"
-              name="last_name"
-              errors={errors.last_name}
-              value={data.last_name}
-              onChange={e => setData('last_name', e.target.value)}
+              label="Name"
+              name="name"
+              errors={errors.name}
+              value={data.name}
+              disabled
+              onChange={e => setData('name', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -101,6 +82,7 @@ const Edit = () => {
               type="email"
               errors={errors.email}
               value={data.email}
+              disabled
               onChange={e => setData('email', e.target.value)}
             />
             <TextInput
@@ -110,6 +92,7 @@ const Edit = () => {
               type="text"
               errors={errors.phone}
               value={data.phone}
+              disabled
               onChange={e => setData('phone', e.target.value)}
             />
             <TextInput
@@ -119,6 +102,7 @@ const Edit = () => {
               type="text"
               errors={errors.nhif_number}
               value={data.nhif_number}
+              disabled
               onChange={e => setData('nhif_number', e.target.value)}
             />
              <TextInput
@@ -128,6 +112,7 @@ const Edit = () => {
               type="text"
               errors={errors.id_number}
               value={data.id_number}
+              disabled
               onChange={e => setData('id_number', e.target.value)}
             />
             <TextInput
@@ -137,21 +122,29 @@ const Edit = () => {
               type="date"
               errors={errors.expected_delivery}
               value={data.expected_delivery}
+              disabled
               onChange={e => setData('expected_delivery', e.target.value)}
             />
-            
+             <TextArea
+              className="w-full pb-8 pr-6 lg:w-full"
+              label="Notes"
+              name="notes"
+              errors={errors.notes}
+              value={data.notes}
+              onChange={e => setData('notes', e.target.value)}
+            />
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
-            {!patient.deleted_at && (
+            {!referral.deleted_at && (
               
-              <DeleteButton onDelete={destroy}>Delete patient</DeleteButton>
+              <DeleteButton onDelete={destroy}>Delete Referral</DeleteButton>
             )}
             <LoadingButton
               loading={processing}
               type="submit"
               className="ml-auto btn-indigo"
             >
-              Update patient
+              Update Referral
             </LoadingButton>
           </div>
         </form>
@@ -160,6 +153,6 @@ const Edit = () => {
   );
 };
 
-Edit.layout = page => <Layout children={page} />;
+Edit.layout = page => <Layout title="Update Referral" children={page} />;
 
 export default Edit;
