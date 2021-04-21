@@ -6,7 +6,6 @@ import Layout from '@/Shared/Layout';
 import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 const Edit = () => {
@@ -26,9 +25,10 @@ const Edit = () => {
     put(route('patients.update', patient.id));
   }
 
-  function handleRefer(e) {
-    e.preventDefault();
-    put(route('patients.refer', patient.id));
+  function onRefer() {
+    if (confirm('Are you sure you want to refer this patient?')) {
+      Inertia.get(route('referrals.create', patient.id));
+    }
   }
 
   function destroy() {
@@ -59,15 +59,14 @@ const Edit = () => {
           {data.first_name} {data.last_name}
         </h1>
         {!patient.deleted_at && (
-            <form onSubmit={handleRefer}>
-                <LoadingButton
-                  loading={processing}
-                  type="submit"
-                  className="ml-auto btn-indigo"
-                >
-                Refer patient
-              </LoadingButton>
-            </form>
+            <button
+                className="btn-indigo"
+                tabIndex="-1"
+                type="button"
+                onClick={onRefer}
+              >
+                Refer Patient to St Jude
+          </button>
         )}
       </div>
 

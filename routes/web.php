@@ -70,12 +70,12 @@ Route::put('patients/{patient}/restore')->name('patients.restore')->uses('Patien
 
 // Referrals
 Route::get('referrals')->name('referrals')->uses('ReferralsController@index')->middleware('remember', 'auth');
-Route::get('referrals/create')->name('referrals.create')->uses('ReferralsController@create')->middleware('auth');
-Route::post('referrals')->name('referrals.store')->uses('ReferralsController@store')->middleware('auth');
-Route::get('referrals/{patient}/edit')->name('referrals.edit')->uses('ReferralsController@edit')->middleware('auth');
-Route::put('referrals/{patient}')->name('referrals.update')->uses('ReferralsController@update')->middleware('auth');
-Route::delete('referrals/{patient}')->name('referrals.destroy')->uses('ReferralsController@destroy')->middleware('auth');
-Route::put('referrals/{patient}/restore')->name('referrals.restore')->uses('ReferralsController@restore')->middleware('auth');
+Route::get('referrals/{patient}/create')->name('referrals.create')->uses('ReferralsController@create')->middleware('auth');
+Route::post('referrals/{patient}')->name('referrals.store')->uses('ReferralsController@store')->middleware('auth');
+Route::get('referrals/{referral}/edit')->name('referrals.edit')->uses('ReferralsController@edit')->middleware('auth');
+Route::put('referrals/{referral}')->name('referrals.update')->uses('ReferralsController@update')->middleware('auth');
+Route::delete('referrals/{referral}')->name('referrals.destroy')->uses('ReferralsController@destroy')->middleware('auth');
+Route::put('referrals/{referral}/restore')->name('referrals.restore')->uses('ReferralsController@restore')->middleware('auth');
 
 // Reports
 Route::get('reports')->name('reports')->uses('ReportsController')->middleware('auth');

@@ -2,7 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ReferralStoreRequest;
+use App\Http\Requests\ReferralUpdateRequest;
+use App\Http\Resources\ReferralCollection;
+use App\Http\Resources\ReferralResource;
+use App\Http\Resources\PatientResource;
+use Inertia\Inertia;
+use App\Models\Referral;
+use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ReferralsController extends Controller
 {
@@ -20,18 +30,23 @@ class ReferralsController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Patient $patient)
     {
-        return Inertia::render('Referrals/Create');
+        return Inertia::render('Referrals/Create', [
+            'patient' => new PatientResource($patient)
+        ]);
     }
 
-    public function store(ReferralStoreRequest $request)
+    public function store(Patient $patient, ReferralStoreRequest $request)
     {
-        Auth::user()->clinic->Referrals()->create(
-            $request->validated()
-        );
+        Referral::create([
+            'clinic_id' => $patient->clinic_id,
+            'patient_id' => $patient->id,
+            'user_id' => Auth::user()->id,
+            'notes' => $request->notes,
+        ]);
 
-        return Redirect::route('Referrals')->with('success', 'Referral created.');
+        return Redirect::route('referrals')->with('success', 'Referral created.');
     }
 
     public function edit(Referral $referral)

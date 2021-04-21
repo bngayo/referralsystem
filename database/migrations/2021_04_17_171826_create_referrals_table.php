@@ -16,6 +16,7 @@ class CreateReferralsTable extends Migration
         Schema::create('referrals', function (Blueprint $table) {
             $table->id();
             $table->integer('clinic_id')->index();
+            $table->integer('patient_id')->index();
             $table->integer('user_id')->index();
             $table->text('notes')->nullable();
             $table->softDeletes();
