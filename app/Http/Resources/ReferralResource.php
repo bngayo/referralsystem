@@ -27,6 +27,7 @@ class ReferralResource extends JsonResource
             'clinic' => $this->whenLoaded('clinic')->name,
             'user' => $this->whenLoaded('user')->name,
             'notes' => $this->notes,
+            'payments' => $this->payments()->orderByDateCreated()->get()->map->only('id', 'reference_no', 'amount', 'notes'),
         ];
     }
 }
