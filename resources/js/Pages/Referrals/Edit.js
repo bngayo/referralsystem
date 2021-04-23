@@ -152,12 +152,13 @@ const Edit = () => {
 
       <div className="flex items-center justify-between">
         <h2 className="mt-6 text-3xl font-bold">Payments</h2>
-          <InertiaLink
-            href={route('referrals')}
-            className="text-indigo-600 hover:text-indigo-700"
-          >
-            Make Payment
-          </InertiaLink>
+        <InertiaLink
+          className="btn-indigo focus:outline-none"
+          href={route('payments.create', referral.id)}
+        >
+          <span>Create</span>
+          <span className="hidden md:inline"> Payment</span>
+        </InertiaLink>
       </div>
 
       <div className="mt-6 overflow-x-auto bg-white rounded shadow">

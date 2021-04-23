@@ -77,6 +77,15 @@ Route::put('referrals/{referral}')->name('referrals.update')->uses('ReferralsCon
 Route::delete('referrals/{referral}')->name('referrals.destroy')->uses('ReferralsController@destroy')->middleware('auth');
 Route::put('referrals/{referral}/restore')->name('referrals.restore')->uses('ReferralsController@restore')->middleware('auth');
 
+// Payments
+Route::get('payments')->name('payments')->uses('PaymentsController@index')->middleware('remember', 'auth');
+Route::get('payments/{referral}/create')->name('payments.create')->uses('PaymentsController@create')->middleware('auth');
+Route::post('payments/{referral}')->name('payments.store')->uses('PaymentsController@store')->middleware('auth');
+Route::get('payments/{payment}/edit')->name('payments.edit')->uses('PaymentsController@edit')->middleware('auth');
+Route::put('payments/{payment}')->name('payments.update')->uses('PaymentsController@update')->middleware('auth');
+Route::delete('payments/{payment}')->name('payments.destroy')->uses('PaymentsController@destroy')->middleware('auth');
+Route::put('payments/{payment}/restore')->name('payments.restore')->uses('PaymentsController@restore')->middleware('auth');
+
 // Reports
 Route::get('reports')->name('reports')->uses('ReportsController')->middleware('auth');
 
