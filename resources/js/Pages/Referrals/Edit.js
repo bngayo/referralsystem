@@ -8,6 +8,7 @@ import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
 import TrashedMessage from '@/Shared/TrashedMessage';
+import Icon from '@/Shared/Icon';
 
 const Edit = () => {
   const { referral } = usePage().props;
