@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'System',
             'last_name' => 'Admin',
             'email' => 'admin@stjudemedicalcentre.com',
+            'phone' => '0721000000',
             'owner' => true,
         ]);
 
