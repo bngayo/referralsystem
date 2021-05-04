@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserDeleteRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Resources\ClinicCollection;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Models\Clinic;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -31,7 +33,11 @@ class UsersController extends Controller
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+        return Inertia::render('Users/Create', [
+            'clinics' => new ClinicCollection(
+                Clinic::orderBy('name')->get()
+            ),
+        ]);
     }
 
     public function store(UserStoreRequest $request)
@@ -47,6 +53,9 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/Edit', [
             'user' => new UserResource($user),
+            'clinics' => new ClinicCollection(
+                Clinic::orderBy('name')->get()
+            ),
         ]);
     }
 

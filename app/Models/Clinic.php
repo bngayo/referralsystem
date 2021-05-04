@@ -9,9 +9,9 @@ class Clinic extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public function contacts()
+    public function users()
     {
-        return $this->hasMany(Contact::class);
+        return $this->hasMany(User::class);
     }
 
     public function patients()

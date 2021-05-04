@@ -6,7 +6,6 @@ import Layout from '@/Shared/Layout';
 import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
 
@@ -119,20 +118,30 @@ const Edit = () => {
           </div>
         </form>
       </div>
-      <h2 className="mt-12 text-2xl font-bold">Contacts</h2>
+      <h2 className="mt-12 text-2xl font-bold">Users</h2>
+      <div className="flex items-center justify-between mb-6">
+        <div></div>
+        <InertiaLink
+          className="btn-indigo focus:outline-none"
+          href={route('users.create')}
+        >
+          <span>Create</span>
+          <span className="hidden md:inline"> User</span>
+        </InertiaLink>
+      </div>
       <div className="mt-6 overflow-x-auto bg-white rounded shadow">
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="font-bold text-left">
               <th className="px-6 pt-5 pb-4">Name</th>
-              <th className="px-6 pt-5 pb-4">City</th>
+              <th className="px-6 pt-5 pb-4">Email</th>
               <th className="px-6 pt-5 pb-4" colSpan="2">
                 Phone
               </th>
             </tr>
           </thead>
           <tbody>
-            {clinic.contacts.map(
+            {clinic.users.map(
               ({ id, name, phone, email, deleted_at }) => {
                 return (
                   <tr
@@ -187,10 +196,10 @@ const Edit = () => {
                 );
               }
             )}
-            {clinic.contacts.length === 0 && (
+            {clinic.users.length === 0 && (
               <tr>
                 <td className="px-6 py-4 border-t" colSpan="4">
-                  No contacts found.
+                  No users found.
                 </td>
               </tr>
             )}

@@ -21,7 +21,7 @@ class ClinicResource extends JsonResource
             'phone' => $this->phone,
             'address' => $this->address,
             'location' => $this->location,
-            'contacts' => $this->contacts()->orderByName()->get()->map->only('id', 'name', 'email', 'phone'),
+            'users' => $this->users()->orderByName()->get()->map->only('id', 'name', 'email', 'phone'),
         ];
     }
 }

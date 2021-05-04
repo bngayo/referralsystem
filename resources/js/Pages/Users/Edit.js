@@ -11,14 +11,14 @@ import FileInput from '@/Shared/FileInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 const Edit = () => {
-  const { user } = usePage().props;
+  const { user, clinics } = usePage().props;
   const { data, setData, errors, post, processing } = useForm({
     first_name: user.first_name || '',
     last_name: user.last_name || '',
     email: user.email || '',
     password: user.password || '',
-    owner: user.owner ? '1' : '0' || '0',
-    photo: '',
+    clinic: user.clinic,
+    phone: user.phone,
 
     // NOTE: When working with Laravel PUT/PATCH requests and FormData
     // you SHOULD send POST request and fake the PUT request like this.
@@ -97,6 +97,15 @@ const Edit = () => {
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Phone"
+              name="phone"
+              type="phone"
+              errors={errors.phone}
+              value={data.phone}
+              onChange={e => setData('phone', e.target.value)}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Password"
               name="password"
               type="password"
@@ -106,24 +115,18 @@ const Edit = () => {
             />
             <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Owner"
-              name="owner"
-              errors={errors.owner}
-              value={data.owner}
-              onChange={e => setData('owner', e.target.value)}
+              label="Clinic"
+              name="clinic"
+              errors={errors.clinic}
+              value={data.clinic}
+              onChange={e => setData('clinic', e.target.value)}
             >
-              <option value="1">Yes</option>
-              <option value="0">No</option>
+
+              {clinics.map(({id, name}) => {
+                return ( <option key={id} value={id}>{name}</option>);
+              })}
+             
             </SelectInput>
-            <FileInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Photo"
-              name="photo"
-              accept="image/*"
-              errors={errors.photo}
-              value={data.photo}
-              onChange={photo => setData('photo', photo)}
-            />
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
             {!user.deleted_at && (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, useForm } from '@inertiajs/inertia-react';
+import { InertiaLink, useForm, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
@@ -8,13 +8,15 @@ import SelectInput from '@/Shared/SelectInput';
 import FileInput from '@/Shared/FileInput';
 
 const Create = () => {
+  const { clinics } = usePage().props;
+
   const { data, setData, errors, post, processing } = useForm({
     first_name: '',
     last_name: '',
     email: '',
     password: '',
-    owner: '0',
-    photo: ''
+    phone: '',
+    clinic: 1
   });
 
   function handleSubmit(e) {
@@ -65,6 +67,15 @@ const Create = () => {
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Phone"
+              name="phone"
+              type="phone"
+              errors={errors.phone}
+              value={data.phone}
+              onChange={e => setData('phone', e.target.value)}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Password"
               name="password"
               type="password"
@@ -74,24 +85,18 @@ const Create = () => {
             />
             <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Owner"
-              name="owner"
-              errors={errors.owner}
-              value={data.owner}
-              onChange={e => setData('owner', e.target.value)}
+              label="Clinic"
+              name="clinic"
+              errors={errors.clinic}
+              value={data.clinic}
+              onChange={e => setData('clinic', e.target.value)}
             >
-              <option value="1">Yes</option>
-              <option value="0">No</option>
+
+              {clinics.map(({id, name}) => {
+                return ( <option key={id} value={id}>{name}</option>);
+              })}
+             
             </SelectInput>
-            <FileInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Photo"
-              name="photo"
-              accept="image/*"
-              errors={errors.photo}
-              value={data.photo}
-              onChange={photo => setData('photo', photo)}
-            />
           </div>
           <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
             <LoadingButton
