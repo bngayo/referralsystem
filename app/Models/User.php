@@ -69,7 +69,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function isAdminUser()
     {
-        return $this->email === 'johndoe@example.com';
+        return $this->email === 'admin@stjudemedicalcentre.com';
     }
 
     public function isSuperUser()

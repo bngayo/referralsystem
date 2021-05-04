@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'clinic_id' => $clinic->id,
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'johndoe@example.com',
+            'first_name' => 'System',
+            'last_name' => 'Admin',
+            'email' => 'admin@stjudemedicalcentre.com',
             'owner' => true,
         ]);
 
-        User::factory()->count(2)->create([
-            'clinic_id' => $clinic->id
-        ]);
+        // User::factory()->count(2)->create([
+        //     'clinic_id' => $clinic->id
+        // ]);
     }
 }
