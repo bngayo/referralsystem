@@ -35,7 +35,8 @@ class PatientStoreRequest extends FormRequest
             })],
             'email' => ['nullable', 'max:50', 'email'],
             'phone' => ['required', 'max:50'],
-            'expected_delivery' => ['required', 'max:150']
+            'last_period' => ['required', 'date'],
+            'expected_delivery' => ['nullable', 'date']
         ];
     }
 }

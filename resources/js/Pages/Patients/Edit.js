@@ -18,6 +18,7 @@ const Edit = () => {
     nhif_number: patient.nhif_number || '',
     id_number: patient.id_number || '',
     expected_delivery: patient.expected_delivery || '',
+    last_period: patient.last_period || ''
   });
 
   function handleSubmit(e) {
@@ -129,6 +130,15 @@ const Edit = () => {
               errors={errors.id_number}
               value={data.id_number}
               onChange={e => setData('id_number', e.target.value)}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Expected Delivery Date"
+              name="expected_delivery"
+              type="date"
+              errors={errors.last_period}
+              value={data.last_period}
+              onChange={e => setData('last_period', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"

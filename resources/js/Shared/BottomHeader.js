@@ -8,7 +8,7 @@ export default () => {
   return (
     <div className="flex items-center justify-between w-full p-4 text-sm bg-white border-b md:py-0 md:px-12 d:text-md">
       <div className="mt-1 mr-4 text-center">
-        <h1 className="text-3xl font-bold text-blue-800">St Judes Medical Center Referral System</h1>
+        <h1 className="text-3xl font-bold text-blue-800">St Judes Medical Centre Referral System</h1>
       </div>
       <div className="relative">
         <div

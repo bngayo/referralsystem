@@ -14,7 +14,8 @@ const Create = () => {
     last_name: '',
     email: '',
     phone: '',
-    expected_delivery: ''
+    expected_delivery: '',
+    last_period: ''
   });
 
   function handleSubmit(e) {
@@ -93,8 +94,18 @@ const Create = () => {
               label="Expected Delivery Date"
               name="expected_delivery"
               type="date"
+              errors={errors.last_period}
+              value={data.last_period}
+              onChange={e => setData('last_period', e.target.value)}
+            />
+             <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Expected Delivery Date"
+              name="expected_delivery"
+              type="date"
               errors={errors.expected_delivery}
               value={data.expected_delivery}
+              disabled
               onChange={e => setData('expected_delivery', e.target.value)}
             />
           </div>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
+use DateTime;
 
 class Patient extends Model
 {
@@ -17,6 +19,13 @@ class Patient extends Model
     public function getNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    public function setExpectedDeliveryAttribute($last_period)
+    {
+        $lp = new Carbon(new DateTime($last_period));
+
+        $this->attributes['expected_delivery'] = $lp->addDays(280);
     }
 
     public function scopeOrderByDateCreated($query)

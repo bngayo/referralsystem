@@ -22,7 +22,8 @@ class CreatePatientsTable extends Migration
             $table->string('last_name', 25);
             $table->string('phone', 50);
             $table->string('email', 50)->nullable();
-            $table->date('expected_delivery')->now();
+            $table->date('last_period');
+            $table->date('expected_delivery');
             $table->integer('created_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->timestamps();
