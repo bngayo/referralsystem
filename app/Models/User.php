@@ -67,9 +67,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
     }
 
-    public function isDemoUser()
+    public function isAdminUser()
     {
         return $this->email === 'johndoe@example.com';
+    }
+
+    public function isSuperUser()
+    {
+        return $this->clinic_id === 1;
     }
 
     public function scopeOrderByName($query)

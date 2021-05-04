@@ -24,6 +24,15 @@ class Clinic extends Model
         return $this->hasMany(Referral::class);
     }
 
+    public function scopeFilterByClinic($query)
+    {
+        $clinic = Auth::user()->clinic_id;
+
+        if ($clinic == 1) {
+            $query->where('clinic_id' == $clinic);
+        }
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

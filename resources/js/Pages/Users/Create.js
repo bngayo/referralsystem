@@ -16,7 +16,7 @@ const Create = () => {
     email: '',
     password: '',
     phone: '',
-    clinic: 1
+    clinic_id: 1
   });
 
   function handleSubmit(e) {
@@ -86,10 +86,10 @@ const Create = () => {
             <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Clinic"
-              name="clinic"
-              errors={errors.clinic}
-              value={data.clinic}
-              onChange={e => setData('clinic', e.target.value)}
+              name="clinic_id"
+              errors={errors.clinic_id}
+              value={data.clinic_id}
+              onChange={e => setData('clinic_id', e.target.value)}
             >
 
               {clinics.map(({id, name}) => {

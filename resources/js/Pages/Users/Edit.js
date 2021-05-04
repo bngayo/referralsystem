@@ -17,7 +17,7 @@ const Edit = () => {
     last_name: user.last_name || '',
     email: user.email || '',
     password: user.password || '',
-    clinic: user.clinic,
+    clinic_id: user.clinic_id,
     phone: user.phone,
 
     // NOTE: When working with Laravel PUT/PATCH requests and FormData
@@ -116,10 +116,10 @@ const Edit = () => {
             <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Clinic"
-              name="clinic"
-              errors={errors.clinic}
-              value={data.clinic}
-              onChange={e => setData('clinic', e.target.value)}
+              name="clinic_id"
+              errors={errors.clinic_id}
+              value={data.clinic_id}
+              onChange={e => setData('clinic_id', e.target.value)}
             >
 
               {clinics.map(({id, name}) => {

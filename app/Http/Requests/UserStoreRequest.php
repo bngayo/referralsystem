@@ -29,9 +29,8 @@ class UserStoreRequest extends FormRequest
             'last_name' => ['required', 'max:50'],
             'email' => ['required', 'max:50', 'email', Rule::unique('users')],
             'password' => ['nullable'],
-            'owner' => ['required', 'boolean'],
-            'photo' => ['nullable', 'image'],
+            'clinic_id' => ['required'],
+            'phone' => ['required', 'max:50'],
         ];
     }
-
 }
