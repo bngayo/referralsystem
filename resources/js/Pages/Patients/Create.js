@@ -91,8 +91,8 @@ const Create = () => {
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Expected Delivery Date"
-              name="expected_delivery"
+              label="Last Period"
+              name="last_period"
               type="date"
               errors={errors.last_period}
               value={data.last_period}

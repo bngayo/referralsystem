@@ -24,6 +24,7 @@ class PatientResource extends JsonResource
             'nhif_number' => $this->nhif_number,
             'id_number' => $this->id_number,
             'expected_delivery' => $this->expected_delivery,
+            'last_period' => $this->last_period,
             'deleted_at' => $this->deleted_at,
             'clinic' => $this->whenLoaded('clinic')
         ];
