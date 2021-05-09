@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Clinic;
 use App\Models\Referral;
 use App\Models\Patient;
+use App\Http\Resources\ReferralResource;
+use App\Http\Resources\ReferralCollection;
 
 class DashboardController extends Controller
 {
@@ -15,6 +17,9 @@ class DashboardController extends Controller
             'clinics'=> Clinic::count(),
             'patients'=> Patient::count(),
             'referrals'=> Referral::count(),
+            'latest_referrals' => new ReferralCollection(
+                Referral::orderByDateCreated()->limit(10)->get()
+            ),
         ]);
     }
 }

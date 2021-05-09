@@ -133,7 +133,7 @@ const Edit = () => {
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
-              label="Last Period"
+              label="Last Menstrual Period(LMP)"
               name="last_period"
               type="date"
               errors={errors.last_period}
